@@ -12,7 +12,7 @@ var users = require('./routes/users');
 var app = express();
 
 var env;
-app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT || 7000);
 if (process.env.VCAP_SERVICES !== undefined){
     //get the service JSON object
     env = JSON.parse(process.env.VCAP_SERVICES);
@@ -21,6 +21,7 @@ if (process.env.VCAP_SERVICES !== undefined){
 //if running on BlueMix get the credentials for the cloudant service
 var creds = getEnv(env, "cloudantNoSQLDB");
 var nano;
+var nanoid;
 
 /*include the nano module and link to either cloudant on BlueMix or the local couchdb*/
 if (creds!==undefined){
